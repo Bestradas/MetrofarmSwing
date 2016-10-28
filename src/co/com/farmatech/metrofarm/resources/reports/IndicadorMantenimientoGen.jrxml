@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="IndicadorMantenimientoGen" language="groovy" pageWidth="793" pageHeight="1122" orientation="Landscape" columnWidth="753" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="72edb483-d8e2-4c11-9a23-99ab26aa74ce">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="3895ff0f-4171-41c2-8ceb-1b8fb9e2c909"/>
+	<parameter name="Logo" class="java.lang.String"/>
+	<parameter name="banner" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     anio AS GraficosIndicadores_Year,
+     mes AS GraficosIndicadores_Mes,
+     porcentaje AS GraficosIndicadores_Porcentaje,
+     indicador AS GraficosIndicadores_Indicador,
+     programados AS GraficosIndicadores_Programados,
+     ejecutados AS GraficosIndicadores_Ejecutadas
+FROM
+     TempGraficosIndicadores
+ORDER by numero asc]]>
+	</queryString>
+	<field name="GraficosIndicadores_Year" class="java.lang.String"/>
+	<field name="GraficosIndicadores_Mes" class="java.lang.String"/>
+	<field name="GraficosIndicadores_Porcentaje" class="java.math.BigDecimal"/>
+	<field name="GraficosIndicadores_Indicador" class="java.lang.String"/>
+	<field name="GraficosIndicadores_Programados" class="java.lang.Integer"/>
+	<field name="GraficosIndicadores_Ejecutadas" class="java.lang.Integer"/>
+	<background>
+		<band height="1082" splitType="Stretch">
+			<image isLazy="true">
+				<reportElement x="523" y="981" width="230" height="44" uuid="8593b363-75d2-4210-a5e0-6775b06150b3"/>
+				<imageExpression><![CDATA[$P{Logo}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="0" y="3" width="798" height="50" uuid="c6eca030-2096-4372-bfbc-8e07a058794c"/>
+				<imageExpression><![CDATA[$P{banner}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="227" y="65" width="449" height="29" uuid="3c93cd71-bd34-43cc-b367-d7e7a7c44a33"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[INDICADOR ESTADÍSTICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="4" y="0" width="687" height="65" uuid="3131838f-b5ee-4074-befb-f8103b3de49c"/>
+				<textElement textAlignment="Left">
+					<font size="44" isBold="false"/>
+				</textElement>
+				<text><![CDATA[indicador mantenimiento general]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="SubTitle" x="691" y="65" width="47" height="29" forecolor="#666666" uuid="d704dc88-a304-4ac4-8b49-d71dc2bf1065"/>
+				<textFieldExpression><![CDATA[$F{GraficosIndicadores_Year}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<frame>
+				<reportElement x="227" y="0" width="575" height="14" uuid="48c685ed-564d-4b7f-afec-ccf8e34e7d88"/>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="105" y="0" width="95" height="14" forecolor="#000000" uuid="69bcee18-625c-4c77-943c-bf8a8e3fe689"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Porcentaje]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="0" y="0" width="95" height="14" forecolor="#000000" uuid="f28b0af2-0dd5-458a-928b-88ae71a09a26"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Ejecutadas]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="4" y="0" width="113" height="14" forecolor="#000000" uuid="5aa78bfc-bfd5-4083-905a-5b280ca6bda3"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Mes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="120" y="0" width="101" height="14" forecolor="#000000" uuid="b7ea0167-ad70-408b-ae65-aa14640eb204"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Programadas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="4" y="13" width="575" height="1" uuid="e4fa2dfd-6769-435d-8fb5-c906d391d794"/>
+			</line>
+			<frame>
+				<reportElement x="332" y="0" width="444" height="14" uuid="7ffbd939-8dbe-4d14-a8ea-001eb8a26a86"/>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="131" y="0" width="95" height="12" uuid="ae0d0e44-4cba-4f46-a719-a5a65e8c959b"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{GraficosIndicadores_Porcentaje}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="6" y="0" width="111" height="14" uuid="a294db15-26f5-4ac3-b984-d1b0550fe3d2"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GraficosIndicadores_Mes}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="120" y="1" width="101" height="14" uuid="c4f24e42-4ad8-4b14-ae06-feccea58419f"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GraficosIndicadores_Programados}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="227" y="0" width="95" height="14" uuid="4723ccdf-2d44-4c2d-9920-078e0ad16ad8"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GraficosIndicadores_Ejecutadas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="dc65ee2d-ff38-41f4-a423-99d1bd157222"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="16" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="774" height="16" forecolor="#D0B48E" backcolor="#006699" uuid="d94e9d41-a60f-4eb5-b0b0-163da7a8119c"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="713" y="0" width="40" height="16" forecolor="#FFFFFF" uuid="21858786-9261-4842-bb27-93995d75a956"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="626" y="0" width="80" height="16" forecolor="#FFFFFF" uuid="d5d74a78-7282-4bff-9f4f-656221b859bd"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="0" width="197" height="16" forecolor="#FFFFFF" uuid="d8ee97ae-a380-4614-9dd9-98230bc120a0"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="750" splitType="Stretch">
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="27" y="220" width="699" height="352" uuid="acc83899-da18-4034-bf71-1e05a846093c"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{GraficosIndicadores_Mes}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{GraficosIndicadores_Mes}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{GraficosIndicadores_Porcentaje}]]></valueExpression>
+						<labelExpression><![CDATA[$F{GraficosIndicadores_Mes}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+		</band>
+	</summary>
+</jasperReport>

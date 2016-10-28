@@ -1,0 +1,3 @@
+jdbc:sqlserver://10.10.0.21:1433;databaseName=sys_cim;selectMethod=cursor;
+sa
+Red@humax
